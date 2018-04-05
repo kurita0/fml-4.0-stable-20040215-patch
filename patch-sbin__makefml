@@ -1,5 +1,5 @@
---- sbin/makefml.orig	2018-04-05 19:56:18.692298000 +0900
-+++ sbin/makefml	2018-04-05 20:00:09.941098000 +0900
+--- sbin/makefml.orig	2003-01-26 20:18:01.000000000 +0900
++++ sbin/makefml	2018-04-05 23:22:08.624547000 +0900
 @@ -136,8 +136,8 @@
      if ($ENV{'MAKEFML'}) {
  	unshift(@ARGV, split(/\s+/, $ENV{'MAKEFML'}));
@@ -35,3 +35,12 @@
  		 ($dumpPackages || $key !~ /::$/)
  		 && ($key !~ /^_</ || $dumpDBFiles)
  		 && !($package eq "dumpvar" && $key eq "stab")
+@@ -7112,7 +7112,7 @@
+     for (split(/\n/, $MAP{$menu})) {
+ 	if (/^\s*(\S+)\s*(.*)\s*$/) {
+ 	    $MAP{$menu, $1} = $2;
+-	    $MAP{$menu, $1} =~ s/\$config{\'_ML_\'}/$config{'_ML_'}/g;
++	    $MAP{$menu, $1} =~ s/\$config\{\'_ML_\'\}/$config{'_ML_'}/g;
+ 	}
+     }
+ }
