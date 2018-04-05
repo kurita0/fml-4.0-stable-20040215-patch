@@ -1,0 +1,37 @@
+--- sbin/makefml.orig	2018-04-05 19:56:18.692298000 +0900
++++ sbin/makefml	2018-04-05 20:00:09.941098000 +0900
+@@ -136,8 +136,8 @@
+     if ($ENV{'MAKEFML'}) {
+ 	unshift(@ARGV, split(/\s+/, $ENV{'MAKEFML'}));
+     }
+-    require 'getopts.pl';
+-    &Getopts("adhf:A:O:p:D:vwV:mi:u:UFE:W:c:");
++    use Getopt::Std;
++    getopts('adhf:A:O:p:D:vwV:mi:u:UFE:W:c:');
+ 
+     # toggle flags
+     # $CGIInstallMode = ($opt_W =~ /cgi/i) ? 1 : 0;
+@@ -6355,7 +6355,7 @@
+ 		$buf .= "\$$key = '$entry';\n";
+ 	    }
+ 
+-	    if (defined @entry) {
++	    if (@entry) {
+ 		$buf .= "\@$key = (\n";
+ 		foreach $num ($[ .. $#entry) {
+ 		    $buf .= "\t'$entry[$num]',\n";
+@@ -6364,12 +6364,12 @@
+ 	    }
+ 
+ 	    if ((($] !~ /5\.\d\d\d/) && 
+-		 $key ne "_$package" && $key ne "_DB" && defined %entry
++		 $key ne "_$package" && $key ne "_DB" && %entry
+ 		 )
+ 		||
+ 		(($] =~ /5\.\d\d\d/) && 
+ 		 $key ne "$package::" && $key ne "DB::" && 
+-		 (defined %entry) && 
++		 (%entry) && 
+ 		 ($dumpPackages || $key !~ /::$/)
+ 		 && ($key !~ /^_</ || $dumpDBFiles)
+ 		 && !($package eq "dumpvar" && $key eq "stab")
