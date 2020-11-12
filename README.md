@@ -5,4 +5,5 @@ patch -p0 < patch-cf__config
 patch -p0 < patch-sbin__makefml
 patch -p0 < patch-src__fml.pl
 patch -p0 < patch-src__jcode.pl
+patch -p0 < patch-www__lib__libcgi_kern.pl
 ```
